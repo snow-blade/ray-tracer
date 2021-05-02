@@ -6,6 +6,15 @@ vec3 color(const ray &r){
     float t = 0.5 * (unit_direction.y()+1.0);
     return vec3(1.0,1.0,1.0)*(1.0-t) + vec3(0.5,0.7,1.0)*t ;
 }
+/* The ​color(ray)​ function linearly blends white and blue depending on the up/downess of the y
+coordinate.
+I first made it a unit vector so -1.0 < ​y​ < 1.0. I then did a standard graphics trick of
+scaling that to 0.0 < t < 1.0. When t=1.0 I want blue.
+ When t = 0.0 I want white. In between, I want a blend.
+This forms a “linear blend”, or “linear interpolation”, or “lerp” for short, between two
+things. A lerp is always of the form: ​blended_value = (1-t)*start_value + t*end_value, ​ with t
+going from zero to one. In our case this produces:
+*/
 
 int main(){
   int nx = 200;
